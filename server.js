@@ -20,6 +20,9 @@ const routedonorupdate = require('./routes/donorupdate');
 const routegetvolunteers = require('./routes/getvolunteers');
 const routevolunteerdonation = require('./routes/volunteerdonation');
 const routetovolunteer = require('./routes/tovolunteer');
+const routevolupdate1 = require('./routes/volupdate1');
+const routevolupdate2 = require('./routes/volupdate2');
+const routengoupdate = require('./routes/ngoupdate');
 const PORT = process.env.PORT || 8080; // Step 1
 
 
@@ -39,6 +42,8 @@ mongoose.connection.on('connected', () => {
 app.use(cors());
 app.use(morgan('tiny'));
 
+
+
 app.use('/', routes);
 app.use('/', routesignin);
 app.use('/', routeaddevent);
@@ -51,6 +56,10 @@ app.use('/', routedonorupdate);
 app.use('/', routegetvolunteers);
 app.use('/', routevolunteerdonation);
 app.use('/', routetovolunteer);
+app.use('/', routevolupdate1);
+app.use('/', routevolupdate2);
+app.use('/', routengoupdate);
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

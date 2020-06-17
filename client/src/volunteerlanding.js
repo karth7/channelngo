@@ -265,7 +265,7 @@ export default function VolunteerLanding(props) {
         }
 
         axios({
-            url: 'http://localhost:8080/donordonation',
+            url: '/donordonation',
             method: 'POST',
             data: payload
         }).then((response) => {
@@ -279,7 +279,7 @@ export default function VolunteerLanding(props) {
         }
 
         axios({
-            url: 'http://localhost:8080/volunteerdonation',
+            url: '/volunteerdonation',
             method: 'POST',
             data: payload2
         }).then((response) => {
@@ -301,7 +301,7 @@ export default function VolunteerLanding(props) {
     const [uitems, setItems] = React.useState([]);
     useEffect(() => {
         axios({
-            url: 'http://localhost:8080/donorevents',
+            url: '/donorevents',
             method: 'GET'
         }).then((response) => {
             console.log(response.data);

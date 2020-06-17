@@ -67,7 +67,7 @@ export default function Orders(props) {
       volunteermail: age
     };
     axios({
-      url: 'http://localhost:8080/addevent',
+      url: '/addevent',
       method: 'POST',
       data: payload
     }).then((re) => {
@@ -87,7 +87,7 @@ export default function Orders(props) {
 
     };
     axios({
-      url: 'http://localhost:8080/getevents',
+      url: '/getevents',
       method: 'POST',
       data: payload
     }).then((response) => {
@@ -96,7 +96,7 @@ export default function Orders(props) {
 
     });
     axios({
-      url: 'http://localhost:8080/getvolunteers',
+      url: '/getvolunteers',
       method: 'GET'
     }).then((response) => {
       console.log(response.data);

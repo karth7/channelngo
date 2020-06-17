@@ -31,7 +31,7 @@ export default function Seticonngo(props) {
                 }
 
                 axios({
-                    url: 'http://localhost:8080/ngoupdate',
+                    url: '/ngoupdate',
                     method: 'POST',
                     data: payload
                 });

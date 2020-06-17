@@ -30,7 +30,7 @@ export default function Seticondonor(props) {
             }
 
             axios({
-                url: 'http://localhost:8080/donorupdate',
+                url: '/donorupdate',
                 method: 'POST',
                 data: payload
             });

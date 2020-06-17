@@ -31,7 +31,7 @@ export default function Seticonvol2(props) {
                 }
 
                 axios({
-                    url: 'http://localhost:8080/volupdate2',
+                    url: '/volupdate2',
                     method: 'POST',
                     data: payload
                 });

@@ -295,7 +295,7 @@ export default function DonorLanding(props) {
         }
 
         axios({
-            url: 'http://localhost:8080/donordonation',
+            url: '/donordonation',
             method: 'POST',
             data: payload
         }).then((response) => {
@@ -314,7 +314,7 @@ export default function DonorLanding(props) {
 
 
         axios({
-            url: 'http://localhost:8080/donorevents',
+            url: '/donorevents',
             method: 'GET'
         }).then((response) => {
             console.log(response.data);
@@ -337,7 +337,7 @@ export default function DonorLanding(props) {
             mail: mail
         };
         axios({
-            url: 'http://localhost:8080/tovolunteer',
+            url: '/tovolunteer',
             method: 'POST',
             data: payload
         });

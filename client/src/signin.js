@@ -135,7 +135,7 @@ export default function SignIn() {
             role: age,
         };
         axios({
-            url: 'http://localhost:8080/signin',
+            url: '/signin',
             method: 'POST',
             data: payload
         }).then((re) => {

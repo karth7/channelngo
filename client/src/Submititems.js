@@ -67,7 +67,7 @@ export default function Submititems(props) {
                     cbngo: false
                 }
                 axios({
-                    url: 'http://localhost:8080/donordonate',
+                    url: '/donordonate',
                     method: 'POST',
                     data: payload
                 }).then((response) => {

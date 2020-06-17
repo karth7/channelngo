@@ -208,7 +208,7 @@ export default function NgoLanding(props) {
         }
 
         axios({
-            url: 'http://localhost:8080/ngodonations',
+            url: '/ngodonations',
             method: 'POST',
             data: payload
         }).then((response) => {

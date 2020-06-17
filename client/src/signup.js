@@ -93,7 +93,7 @@ export default function SignUp() {
             role: age,
         };
         axios({
-            url: 'http://localhost:8080/signup',
+            url: '/signup',
             method: 'POST',
             data: payload
         }).then((response) => {

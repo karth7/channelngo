@@ -40,6 +40,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Seticon from './seticon';
 import Seticonngo from './seticonngo';
 import { logout, isLogin } from './utils';
+import Modifyprofile from './modifyprofile';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -291,9 +292,9 @@ export default function NgoLanding(props) {
                         </IconButton>
                     </div>
                     <Divider />
-                    <List>{mainListItems}</List>
+                    <Modifyprofile mail={email} />
                     <Divider />
-                    <List>{secondaryListItems}</List>
+
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />

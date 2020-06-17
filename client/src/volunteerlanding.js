@@ -46,6 +46,7 @@ import Seticondonor from './seticondonor';
 import Seticonvol1 from './seticonvol1';
 import Seticonvol2 from './seticonvol2';
 import { logout, isLogin } from './utils';
+import Modifyprofile from './modifyprofile';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -351,9 +352,9 @@ export default function VolunteerLanding(props) {
                                     onChange={handleChange2}
                                     aria-label="nav tabs example"
                                 >
-                                    <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-                                    <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
-                                    <LinkTab label="Page Two" href="/trash" {...a11yProps(2)} />
+                                    <LinkTab label="Events" href="/drafts" {...a11yProps(0)} />
+                                    <LinkTab label="Donation history" href="/trash" {...a11yProps(1)} />
+                                    <LinkTab label="Donations by donors" href="/trash" {...a11yProps(2)} />
 
                                 </Tabs>
                             </AppBar>
@@ -387,9 +388,9 @@ export default function VolunteerLanding(props) {
                         </IconButton>
                     </div>
                     <Divider />
-                    <List>{mainListItems}</List>
+                    <Modifyprofile mail={mail} />
                     <Divider />
-                    <List>{secondaryListItems}</List>
+
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />

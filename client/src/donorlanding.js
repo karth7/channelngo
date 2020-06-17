@@ -52,6 +52,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import { logout, isLogin } from './utils';
+import Modifyprofile from './modifyprofile';
 //import Paper from '@material-ui/core/Paper';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -444,7 +445,7 @@ export default function DonorLanding(props) {
                         </ExpansionPanel>
                     </ListItem></List>
                     <Divider />
-                    <List>{secondaryListItems}</List>
+                    <Modifyprofile mail={mail} />
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />

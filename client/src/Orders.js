@@ -16,13 +16,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
-// Generate Order Data
-function createData(eventName, eventDescription) {
-  return { eventName, eventDescription };
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
-
 
 function preventDefault(event) {
   event.preventDefault();
@@ -45,8 +45,17 @@ export default function Orders(props) {
   const [s, sets] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [items, setItems] = React.useState([]);
+  const [severity, sev] = React.useState('');
+  const [msg, m] = React.useState('');
+  const [op, setOp] = React.useState(false);
   const handleChange = (event) => {
     setAge(event.target.value);
+  };
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOp(false);
   };
 
   const handleClose = () => {
@@ -57,25 +66,66 @@ export default function Orders(props) {
     setOpen(true);
   };
   const Submit = (event) => {
-    sets(s + 1);
-    event.preventDefault();
-    const payload = {
-      Email: props.email,
-      Name: props.name,
-      eventName: eventName,
-      eventDescription: eventDescription,
-      volunteermail: age
-    };
-    axios({
-      url: '/addevent',
-      method: 'POST',
-      data: payload
-    }).then((re) => {
-      console.log(re.data);
-      setName(``);
-      setDescription(``);
+    setOp()
+    if (eventName && eventDescription && !age) {
+      sev("error");
+      m("select a volunteer");
+      setOp(true);
+    }
+    else if (eventName && !eventDescription && age) {
+      sev("error");
+      m("Please enter a event description");
+      setOp(true);
+    }
+    else if (!eventName && eventDescription && age) {
+      sev("error");
+      m("Please enter a event name");
+      setOp(true);
+    }
+    else if (!eventName && !eventDescription && age) {
+      sev("error");
+      m("Please enter  event name and description");
+      setOp(true);
+    }
+    else if (eventName && !eventDescription && !age) {
+      sev("error");
+      m("Please enter a event description and select a volunteer");
+      setOp(true);
+    }
+    else if (!eventName && eventDescription && !age) {
+      sev("error");
+      m("Please enter a event name and select a volunteer");
+      setOp(true);
+    }
+    else if (!eventName && !eventDescription && !age) {
+      sev("error");
+      m("Please enter a event name,description and select a volunteer");
+      setOp(true);
+    }
+    else {
+      sets(s + 1);
+      sev("success");
+      m("event added successfully");
+      setOp(true);
+      event.preventDefault();
+      const payload = {
+        Email: props.email,
+        Name: props.name,
+        eventName: eventName,
+        eventDescription: eventDescription,
+        volunteermail: age
+      };
+      axios({
+        url: '/addevent',
+        method: 'POST',
+        data: payload
+      }).then((re) => {
+        console.log(re.data);
+        setName(``);
+        setDescription(``);
 
-    });
+      });
+    }
   }
 
 
@@ -130,10 +180,10 @@ export default function Orders(props) {
               style={{ width: '70ch' }}
               onChange={(event) => { setDescription(event.target.value); }}
             /></Grid>
-
+            Select a volunteer
           <Grid item xs={12} >
             <FormControl className={classes.formControl}>
-              <InputLabel id="demo-controlled-open-select-label">Select a volunteer</InputLabel>
+
               <Select
                 labelId="demo-controlled-open-select-label"
                 id="demo-controlled-open-select"
@@ -144,7 +194,7 @@ export default function Orders(props) {
                 onChange={handleChange}
               >
                 <MenuItem value="">
-
+                  <InputLabel id="demo-controlled-open-select-label">Select a volunteer</InputLabel>
                 </MenuItem>
                 {items.map((item) => {
                   return <MenuItem value={item.Email}>{item.Email}</MenuItem>
@@ -160,6 +210,11 @@ export default function Orders(props) {
             style={{ marginLeft: "30px" }} variant="contained" color="primary">
             Add
 </Button>
+          <Snackbar open={op} autoHideDuration={6000} onClose={handleClose2}>
+            <Alert onClose={handleClose2} severity={severity}>
+              {msg}
+            </Alert>
+          </Snackbar>
         </Grid>
       </form>
     </div>

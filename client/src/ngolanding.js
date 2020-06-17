@@ -303,7 +303,7 @@ export default function NgoLanding(props) {
                             <Grid item xs={12}>
                                 <TabPanel value={value} index={0}>
                                     <Typography variant="h5" style={{ display: "flex", justifyContent: "flex-start" }}>
-                                        Add a new event{props.location.name}
+                                        Add a new event {props.location.name}
                                     </Typography>
 
                                     <Orders email={email} name={name} />

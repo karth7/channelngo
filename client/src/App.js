@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import SignIn from './signin.js';
 import SignUp from './signup.js';

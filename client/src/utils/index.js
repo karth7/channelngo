@@ -1,6 +1,6 @@
-const TOKEN_KEY = 'jwt';
-const TOKEN_KEY2 = 'mail';
-const TOKEN_KEY3 = 'name';
+//const TOKEN_KEY = 'jwt';
+//const TOKEN_KEY2 = 'mail';
+//const TOKEN_KEY3 = 'name';
 
 export const login = (mail, name) => {
 

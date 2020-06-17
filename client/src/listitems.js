@@ -9,8 +9,8 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { Link as l } from 'react-router-dom';
-import Link from "@material-ui/core/Link";
+//import { Link as l } from 'react-router-dom';
+//import Link from "@material-ui/core/Link";
 
 export var str = "url('https://www.biography.com/.image/t_share/MTY2NTIzMzc4MTI2MDM4MjM5/vincent_van_gogh_self_portrait_painting_musee_dorsay_via_wikimedia_commons_promojpg.jpg')"
 

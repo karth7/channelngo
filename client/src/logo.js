@@ -1,7 +1,7 @@
 import React from 'react';
 //import Tilt from 'react-tilt';
 import brain from './logo.png';
-import { findByLabelText } from '@testing-library/react';
+//import { findByLabelText } from '@testing-library/react';
 const Logo = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }} >

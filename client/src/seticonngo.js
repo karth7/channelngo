@@ -16,7 +16,7 @@ export default function Seticonngo(props) {
             if (props.value.sbvolunteer === true) {
                 setc(true);
                 const payload = {
-                    email: props.mail,
+                    email: props.value.donormail,
                     ngoname: props.value.ngoname,
                     eventname: props.value.eventname,
                     ngomail: props.value.ngomail,

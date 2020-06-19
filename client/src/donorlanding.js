@@ -44,7 +44,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Seticon from './seticon.js';
 import Seticondonor from './seticondonor';
 import ListItem from '@material-ui/core/ListItem';
-//import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 //import ListItemText from '@material-ui/core/ListItemText';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
@@ -53,6 +53,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import { logout, isLogin } from './utils';
 import Modifyprofile from './modifyprofile';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 //import Paper from '@material-ui/core/Paper';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -384,8 +386,8 @@ export default function DonorLanding(props) {
                                     onChange={handleChange2}
                                     aria-label="nav tabs example"
                                 >
-                                    <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-                                    <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
+                                    <LinkTab label="Events to donate" href="/drafts" {...a11yProps(0)} />
+                                    <LinkTab label="Donation history" href="/trash" {...a11yProps(1)} />
 
                                 </Tabs>
                             </AppBar>
@@ -421,7 +423,9 @@ export default function DonorLanding(props) {
                     </div>
                     <Divider />
                     <List><ListItem button>
-
+                        <ListItemIcon>
+                            <AccountCircleIcon />
+                        </ListItemIcon>
                         <ExpansionPanel>
                             <ExpansionPanelSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -453,17 +457,18 @@ export default function DonorLanding(props) {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <TabPanel value={value} index={0}>
+
                                     <div>
                                         {uitems.map(function (item, index) {
                                             return <ExpansionPanel square expanded={expanded === index} onChange={handleChange(index)}>
                                                 <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
                                                     <Typography>Ngo Name: </Typography>
-                                                    <Typography>{item.Name} </Typography>
-                                                    <Typography> ,Event name: </Typography>
-                                                    <Typography>{item.eventName} </Typography>
-                                                    <Typography> ,Event Description: </Typography>
-                                                    <Typography>{item.eventDescription}</Typography>
-                                                    <Typography>{" ,click to donate"}</Typography>
+                                                    <Typography>{item.Name}    , </Typography>
+                                                    <Typography> Event name: </Typography>
+                                                    <Typography>{item.eventName}    ,    </Typography>
+                                                    <Typography> Event Description: </Typography>
+                                                    <Typography>{item.eventDescription}{'   '}    ,</Typography>
+                                                    <Typography>{"click to donate"}</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
                                                     <Submititems callbackFromParent={myCallback}
@@ -489,7 +494,7 @@ export default function DonorLanding(props) {
                                     </div>
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-
+                                    <Typography>sb-submitted by, cb-collected by</Typography>
                                     <TableContainer component={Paper}>
                                         <Table className={classes.table} aria-label="simple table">
                                             <TableHead>

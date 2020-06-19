@@ -365,6 +365,7 @@ export default function NgoLanding(props) {
                                     <Orders email={email} name={name} />
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
+                                    <Typography>sb-submitted by, cb-collected by</Typography>
                                     <TableContainer component={Paper}>
                                         <Table className={classes.table} aria-label="simple table">
                                             <TableHead>

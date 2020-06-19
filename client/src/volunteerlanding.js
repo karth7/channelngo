@@ -402,9 +402,13 @@ export default function VolunteerLanding(props) {
                                         {uitems.map(function (item, index) {
                                             return <ExpansionPanel square expanded={expanded === index} onChange={handleChange(index)}>
                                                 <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-                                                    <Typography>{item.Name}</Typography>
-                                                    <Typography>{item.eventName}</Typography>
-                                                    <Typography>{item.eventDescription}</Typography>
+                                                    <Typography>Ngo Name: </Typography>
+                                                    <Typography>{item.Name}    , </Typography>
+                                                    <Typography> Event name: </Typography>
+                                                    <Typography>{item.eventName}    ,    </Typography>
+                                                    <Typography> Event Description: </Typography>
+                                                    <Typography>{item.eventDescription}{'   '}    ,</Typography>
+                                                    <Typography>{"click to donate"}</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
                                                     <Submititems callbackFromParent={myCallback}
@@ -430,6 +434,7 @@ export default function VolunteerLanding(props) {
                                     </div>
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
+                                    <Typography>sb-submitted by, cb-collected by</Typography>
                                     <TableContainer component={Paper}>
                                         <Table className={classes.table} aria-label="simple table">
                                             <TableHead>
@@ -473,6 +478,7 @@ export default function VolunteerLanding(props) {
                                     </TableContainer>
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
+                                    <Typography>sb-submitted by, cb-collected by</Typography>
                                     <TableContainer component={Paper}>
                                         <Table className={classes.table} aria-label="simple table">
                                             <TableHead>

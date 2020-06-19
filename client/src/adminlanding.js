@@ -375,6 +375,9 @@ export default function DonorLanding(props) {
                         >
                             <MenuIcon />
                         </IconButton>
+                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                            minimize the nav bar to see the analysis
+          </Typography>
 
 
                         <Typography style={{ color: "white" }} >

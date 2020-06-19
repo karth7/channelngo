@@ -9,6 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -43,27 +48,33 @@ export default function Modifyprofile(props) {
     const [phone, setPhone] = React.useState(0);
     const [password, setPassword] = React.useState('');
 
-    return (<ExpansionPanel>
-        <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-        >
-            <Typography >Change profile</Typography>
+    return (
+        <ListItem button>
+            <ListItemIcon>
+                <AccountCircleIcon />
+            </ListItemIcon>
+            <ExpansionPanel>
 
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails style={{ display: "block" }}>
-            <div> <TextField id="standard-basic" type="tel" validate="true" label="phone" onChange={(event) => { setPhone(event.target.value) }} /></div>
-            <div><TextField id="password" label="password" validate="true" onChange={(event) => { setPassword(event.target.value) }} /></div>
-            <Button variant="outlined" onClick={handleClick}>
-                confirm
+                <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    <Typography >Change profile</Typography>
+
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails style={{ display: "block" }}>
+                    <div> <TextField id="standard-basic" type="tel" validate="true" label="phone" onChange={(event) => { setPhone(event.target.value) }} /></div>
+                    <div><TextField id="password" label="password" validate="true" onChange={(event) => { setPassword(event.target.value) }} /></div>
+                    <Button variant="outlined" onClick={handleClick}>
+                        confirm
 </Button>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                    Profile is updated successfully
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            Profile is updated successfully
 </Alert>
-            </Snackbar>
-            <Alert severity="success"></Alert>
-        </ExpansionPanelDetails>
-    </ExpansionPanel>)
+                    </Snackbar>
+                    <Alert severity="success"></Alert>
+                </ExpansionPanelDetails>
+            </ExpansionPanel> </ListItem>)
 }

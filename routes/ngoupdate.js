@@ -7,8 +7,8 @@ const donations = require('../models/donations');
 
 router.post('/ngoupdate', (req, res) => {
 
-    donations.updateOne({
-        donormail: req.body.email,
+    donations.update({
+        donormail: req.body.donormail,
         ngomail: req.body.ngomail,
         ngoname: req.body.ngoname,
         eventname: req.body.eventname,
@@ -23,7 +23,10 @@ router.post('/ngoupdate', (req, res) => {
 
 
 
-    }, { $set: { "cbngo": true } }).then(() => {
+    }, { $set: { "cbngo": true } }).then((data) => {
+        console.log(data);
+        console.log(req.body);
+        console.log(req.body.ngomail);
         res.json("updated");
     })
 });

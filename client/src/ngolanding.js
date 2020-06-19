@@ -41,6 +41,10 @@ import Seticon from './seticon';
 import Seticonngo from './seticonngo';
 import { logout, isLogin } from './utils';
 import Modifyprofile from './modifyprofile';
+import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import Title from './Title';
+import { useTheme } from '@material-ui/core/styles';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -177,19 +181,22 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'auto',
     },
     container: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
+        paddingTop: theme.spacing(0),
+        paddingBottom: theme.spacing(0),
     },
     paper: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(0),
         display: 'flex',
         overflow: 'auto',
         flexDirection: 'column',
     },
     fixedHeight: {
-        height: 240,
+        height: 480,
     },
 }));
+function createData(time, amount) {
+    return { time, amount };
+}
 
 
 export default function NgoLanding(props) {
@@ -217,9 +224,57 @@ export default function NgoLanding(props) {
             setItems(response.data);
 
         });
+        while (data1.length > 0) {
+            data1.pop();
+        }
+        for (var i = 0; i < 31; i++) {
+            const payload = {
+                day: i + 1
+            }
+            axios({
+                url: '/getanalysis',
+                method: 'POST',
+                data: payload
+            }).then((response) => {
+                console.log(payload.day);
+                console.log(response.data.length);
+                data1.push(createData(payload.day, response.data.length));
+
+                console.log(data1);
+            })
+
+        }
+
+        while (data2.length > 0) {
+            data2.pop();
+        }
+        for (var j = 0; j < 31; j++) {
+            const payload2 = {
+                day: j + 1
+            }
+            axios({
+                url: '/donationanalysis',
+                method: 'POST',
+                data: payload2
+            }).then((response) => {
+                console.log(payload2.day);
+                console.log(response.data.length);
+                data2.push(createData(payload2.day, response.data));
+
+                console.log(data2);
+            })
+
+        }
+
+
+
+
         setValue(newValue);
     };
     const [open, setOpen] = React.useState(true);
+    const theme = useTheme();
+    const [data1, setData1] = React.useState([]);
+    const [data2, setData2] = React.useState([]);
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -257,8 +312,9 @@ export default function NgoLanding(props) {
                                     onChange={handleChange}
                                     aria-label="nav tabs example"
                                 >
-                                    <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-                                    <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
+                                    <LinkTab label="Events" href="/drafts" {...a11yProps(0)} />
+                                    <LinkTab label="Donations" href="/trash" {...a11yProps(1)} />
+                                    <LinkTab label="Analysis" href="/trash" {...a11yProps(1)} />
 
                                 </Tabs>
                             </AppBar>
@@ -318,6 +374,7 @@ export default function NgoLanding(props) {
                                                     <TableCell align="left">donormail</TableCell>
                                                     <TableCell align="left">volunteermail</TableCell>
                                                     <TableCell align="left">eventname</TableCell>
+                                                    <TableCell align="right">donation_time</TableCell>
                                                     <TableCell align="left">rice</TableCell>
                                                     <TableCell align="left">clothes</TableCell>
                                                     <TableCell align="left">blankets</TableCell>
@@ -337,18 +394,93 @@ export default function NgoLanding(props) {
                                                         <TableCell align="left">{row.donormail}</TableCell>
                                                         <TableCell align="left">{row.volunteermail}</TableCell>
                                                         <TableCell align="left">{row.eventname}</TableCell>
+                                                        <TableCell align="right">{row.donationtime}</TableCell>
                                                         <TableCell align="left">{row.rice}</TableCell>
                                                         <TableCell align="left">{row.clothes}</TableCell>
                                                         <TableCell align="left">{row.blankets}</TableCell>
                                                         <TableCell align="left">{<Seticon value={row.sbdonor} />}</TableCell>
                                                         <TableCell align="left">{<Seticon value={row.cbvolunteer} />}</TableCell>
                                                         <TableCell align="left">{<Seticon value={row.sbvolunteer} />}</TableCell>
-                                                        <TableCell align="left">{<Seticonngo value={row} />}</TableCell>
+                                                        <TableCell align="left">{<Seticonngo value={row} mail={email} name={name} />}</TableCell>
                                                     </TableRow>
                                                 })}
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
+                                </TabPanel>
+                                <TabPanel value={value} index={2}>
+                                    <div>
+                                        <main className={classes.content}>
+                                            <div className={classes.appBarSpacer} />
+                                            <Container maxWidth="lg" className={classes.container}>
+                                                <Grid item xs={12}>
+                                                    <Paper className={fixedHeightPaper}>
+                                                        <React.Fragment>
+                                                            <Title>Events hosted in the month</Title>
+                                                            <ResponsiveContainer>
+                                                                <LineChart
+                                                                    data={data1}
+                                                                    margin={{
+                                                                        top: 16,
+                                                                        right: 16,
+                                                                        bottom: 0,
+                                                                        left: 24,
+                                                                    }}
+                                                                >
+                                                                    <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
+                                                                    <YAxis stroke={theme.palette.text.secondary}>
+                                                                        <Label
+                                                                            angle={270}
+                                                                            position="left"
+                                                                            style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+                                                                        >
+                                                                            Sales ($)
+            </Label>
+                                                                    </YAxis>
+                                                                    <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
+                                                                </LineChart>
+                                                            </ResponsiveContainer>
+                                                        </React.Fragment>
+                                                    </Paper>
+                                                </Grid>
+                                            </Container>
+                                        </main>
+                                        <main className={classes.content}>
+                                            <div className={classes.appBarSpacer} />
+                                            <Container maxWidth="lg" className={classes.container}>
+                                                <Grid item xs={12} >
+                                                    <Paper className={fixedHeightPaper}>
+                                                        <React.Fragment>
+                                                            <Title>Donations in the month</Title>
+                                                            <ResponsiveContainer>
+                                                                <LineChart
+                                                                    data={data2}
+                                                                    margin={{
+                                                                        top: 0,
+                                                                        right: 16,
+                                                                        bottom: 0,
+                                                                        left: 24,
+                                                                    }}
+                                                                >
+                                                                    <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
+                                                                    <YAxis stroke={theme.palette.text.secondary}>
+                                                                        <Label
+                                                                            angle={270}
+                                                                            position="left"
+                                                                            style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+                                                                        >
+                                                                            Donations
+          </Label>
+                                                                    </YAxis>
+                                                                    <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
+                                                                </LineChart>
+                                                            </ResponsiveContainer>
+                                                        </React.Fragment>
+                                                    </Paper>
+                                                </Grid>
+                                            </Container>
+                                        </main>
+                                    </div>
                                 </TabPanel>
 
                             </Grid>

@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Ngolanding from "./ngolanding";
 import Volunteerlanding from './volunteerlanding';
 import PrivateRoute from './PrivateRoute';
+import Chart from './Chart';
+import adminlanding from './adminlanding'
 
 const particlesOptions = {
   particles: {
@@ -44,6 +46,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={SignIn} />
             <Route exact path="/SignUp" component={SignUp} />
+            <Route exact path="/adminlanding" component={adminlanding} />
             <PrivateRoute component={Donorlanding} path="/donorlanding" exact />
             <PrivateRoute component={Ngolanding} path="/ngolanding" exact />
             <PrivateRoute component={Volunteerlanding} path="/volunteerlanding" exact />

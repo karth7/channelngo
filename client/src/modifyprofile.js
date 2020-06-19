@@ -53,8 +53,8 @@ export default function Modifyprofile(props) {
 
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={{ display: "block" }}>
-            <TextField id="standard-basic" type="tel" validate="true" label="phone" onChange={(event) => { setPhone(event.target.value) }} />
-            <TextField id="password" label="password" validate="true" onChange={(event) => { setPassword(event.target.value) }} />
+            <div> <TextField id="standard-basic" type="tel" validate="true" label="phone" onChange={(event) => { setPhone(event.target.value) }} /></div>
+            <div><TextField id="password" label="password" validate="true" onChange={(event) => { setPassword(event.target.value) }} /></div>
             <Button variant="outlined" onClick={handleClick}>
                 confirm
 </Button>

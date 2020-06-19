@@ -24,6 +24,9 @@ const routevolupdate1 = require('./routes/volupdate1');
 const routevolupdate2 = require('./routes/volupdate2');
 const routengoupdate = require('./routes/ngoupdate');
 const routemodifyprofile = require('./routes/modifyprofile');
+const routedeleteevent = require('./routes/deleteevent');
+const routegetanalysis = require('./routes/getanalysis');
+const routedonationanalysis = require('./routes/donationanalysis');
 const PORT = process.env.PORT || 8080; // Step 1
 
 
@@ -61,6 +64,9 @@ app.use('/', routevolupdate1);
 app.use('/', routevolupdate2);
 app.use('/', routengoupdate);
 app.use('/', routemodifyprofile);
+app.use('/', routedeleteevent);
+app.use('/', routegetanalysis);
+app.use('/', routedonationanalysis);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

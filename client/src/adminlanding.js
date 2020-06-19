@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -376,21 +375,7 @@ export default function DonorLanding(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <div className={classes.root2} style={{ marginRight: "10px" }}>
-                            <AppBar position="static">
-                                <Tabs
-                                    variant="fullWidth"
-                                    value={value}
-                                    onChange={handleChange2}
-                                    aria-label="nav tabs example"
-                                >
-                                    <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-                                    <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
 
-                                </Tabs>
-                            </AppBar>
-
-                        </div>
 
                         <Typography style={{ color: "white" }} >
                             Signout
@@ -422,125 +407,14 @@ export default function DonorLanding(props) {
                     <Divider />
                     <List><ListItem button>
 
-                        <ExpansionPanel>
-                            <ExpansionPanelSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <Typography >Change to volunteer</Typography>
 
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                                <Button variant="outlined" onClick={handleClick}>
-                                    confirm
-      </Button>
-                                <Snackbar open={o} autoHideDuration={6000} onClose={handleClose}>
-                                    <Alert onClose={handleClose} severity="success">
-                                        Login with role as volunteer
-        </Alert>
-                                </Snackbar>
-                                <Alert severity="success"></Alert>
-                            </ExpansionPanelDetails>
-                        </ExpansionPanel>
                     </ListItem></List>
                     <Divider />
                     <Modifyprofile mail={mail} />
                 </Drawer>
                 <main className={classes.content}>
-                    <div className={classes.appBarSpacer} />
-                    <Container maxWidth="lg" className={classes.container}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                                <TabPanel value={value} index={0}>
-                                    <div>
-                                        {uitems.map(function (item, index) {
-                                            return <ExpansionPanel square expanded={expanded === index} onChange={handleChange(index)}>
-                                                <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-                                                    <Typography>Ngo Name: </Typography>
-                                                    <Typography>{item.Name} </Typography>
-                                                    <Typography> ,Event name: </Typography>
-                                                    <Typography>{item.eventName} </Typography>
-                                                    <Typography> ,Event Description: </Typography>
-                                                    <Typography>{item.eventDescription}</Typography>
-                                                    <Typography>{" ,click to donate"}</Typography>
-                                                </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-                                                    <Submititems callbackFromParent={myCallback}
-                                                        donormail={mail}
-                                                        donorname={name}
-                                                        ngomail={item.Email}
-                                                        ngoname={item.Name}
-                                                        eventname={item.eventName}
-                                                        volunteermail={item.volunteermail}
-                                                    />
-                                                    <Typography>
-                                                        Donated {count1} {count2} {count3}
-                                                    </Typography>
 
-
-                                                </ExpansionPanelDetails>
-                                            </ExpansionPanel>
-                                        }
-                                        )
-                                        }
-
-
-                                    </div>
-                                </TabPanel>
-                                <TabPanel value={value} index={1}>
-
-                                    <TableContainer component={Paper}>
-                                        <Table className={classes.table} aria-label="simple table">
-                                            <TableHead>
-                                                <TableRow>
-
-                                                    <TableCell>ngoname</TableCell>
-                                                    <TableCell align="right">eventname</TableCell>
-                                                    <TableCell align="right">ngomail</TableCell>
-                                                    <TableCell align="right">donation_time</TableCell>
-                                                    <TableCell align="right">volunteermail</TableCell>
-                                                    <TableCell align="right">rice</TableCell>
-                                                    <TableCell align="right">clothes</TableCell>
-                                                    <TableCell align="right">blankets</TableCell>
-                                                    <TableCell align="right">sbdonor</TableCell>
-                                                    <TableCell align="right">cbvolunteer</TableCell>
-                                                    <TableCell align="right">sbvolunteer</TableCell>
-                                                    <TableCell align="right">cbngo</TableCell>
-
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {items.map(function (row, index) {
-                                                    return <TableRow key={index}>
-                                                        <TableCell component="th" scope="row">
-                                                            {row.ngoname}
-                                                        </TableCell>
-                                                        <TableCell align="right">{row.eventname}</TableCell>
-                                                        <TableCell align="right">{row.ngomail}</TableCell>
-                                                        <TableCell align="right">{row.donationtime}</TableCell>
-                                                        <TableCell align="right">{row.volunteermail}</TableCell>
-                                                        <TableCell align="right">{row.rice}</TableCell>
-                                                        <TableCell align="right">{row.clothes}</TableCell>
-                                                        <TableCell align="right">{row.blankets}</TableCell>
-                                                        <TableCell align="right">{<Seticondonor value={row} mail={mail} />}</TableCell>
-                                                        <TableCell align="right">{<Seticon value={row.cbvolunteer} />}</TableCell>
-                                                        <TableCell align="right">{<Seticon value={row.sbvolunteer} />}</TableCell>
-                                                        <TableCell align="right">{<Seticon value={row.cbngo} />}</TableCell>
-                                                    </TableRow>
-                                                })}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </TabPanel>
-                            </Grid>
-
-
-                        </Grid>
-                        <Box pt={4}>
-                            <Copyright />
-                        </Box>
-                    </Container>
+                    <Chart />
 
                 </main>
             </div>

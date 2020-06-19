@@ -70,6 +70,7 @@ export default function Submititems(props) {
                     s("success");
                     m("Donation accepted")
                     setOpen(true);
+                    console.log(new Date().toLocaleString());
                     const payload = {
                         donormail: props.donormail,
                         donorname: props.donorname,
@@ -83,7 +84,9 @@ export default function Submititems(props) {
                         sbdonor: false,
                         cbvolunteer: false,
                         sbvolunteer: false,
-                        cbngo: false
+                        cbngo: false,
+                        donationtime: new Date(),
+                        donationday: (new Date()).getDate()
                     }
                     axios({
                         url: '/donordonate',

@@ -10,7 +10,10 @@ router.post('/addevent', (req, res) => {
             res.json("not saved");
         }
         else {
-            res.json(req.body);
+
+
+
+            res.json((new Date()).getDate());
         }
     });
 

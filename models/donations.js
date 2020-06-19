@@ -8,13 +8,17 @@ const newSchema = new Schema({
     ngoname: String,
     eventname: String,
     volunteermail: String,
+    donationtime: Date,
+    volunteertime: String,
+    money: Number,
     rice: Number,
     clothes: Number,
     blankets: Number,
     sbdonor: Boolean,
     cbvolunteer: Boolean,
     sbvolunteer: Boolean,
-    cbngo: Boolean
+    cbngo: Boolean,
+    donationday: Number
 
 });
 

@@ -24,6 +24,8 @@ import axios from 'axios';
 //import Donorlanding from './donorlanding';
 import { useHistory } from "react-router-dom";
 import { login } from './utils/index.js';
+import Chart from './Chart';
+import Paper from '@material-ui/core/Paper';
 
 function Copyright() {
     return (
@@ -139,7 +141,7 @@ export default function SignIn() {
             method: 'POST',
             data: payload
         }).then((re) => {
-            // console.log(re.data[0].firstname);
+            console.log(re.data[0].firstname);
 
             if (re.data.length === 1) {
                 switch (age) {
@@ -174,6 +176,15 @@ export default function SignIn() {
                         });
                         // setH("/ngolanding");
                         break;
+                    case "Admin":
+                        login(email, re.data[0].firstname);
+                        history.push({
+                            pathname: "/adminlanding",
+
+                            email: email,
+                            name: re.data[0].firstname,
+
+                        });
                 }
 
 
@@ -185,95 +196,100 @@ export default function SignIn() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Logo />
-                <Typography component="h1" variant="h5">
-                    Sign in
+        <div>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Logo />
+                    <Typography component="h1" variant="h5">
+                        Sign in
           </Typography>
-                <form className={classes.form} validate='true'>
-                    <Grid container spacing={1}>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                value={email}
-                                onChange={(event) => { setEmail(event.target.value); }}
-                                autoFocus
-                            /></Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(event) => { setPassword(event.target.value); }}
-                                autoComplete="current-password"
-                            /></Grid>
-                        <Grid item xs={12} >
-                            <FormControl className={classes.formControl}>
-                                <InputLabel id="demo-controlled-open-select-label">Role</InputLabel>
-                                <Select
-                                    labelId="demo-controlled-open-select-label"
-                                    id="demo-controlled-open-select"
-                                    open={open}
-                                    onClose={handleClose}
-                                    onOpen={handleOpen}
-                                    value={age}
-                                    onChange={handleChange}
+                    <form className={classes.form} validate='true'>
+                        <Grid container spacing={1}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    value={email}
+                                    onChange={(event) => { setEmail(event.target.value); }}
+                                    autoFocus
+                                /></Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(event) => { setPassword(event.target.value); }}
+                                    autoComplete="current-password"
+                                /></Grid>
+                            <Grid item xs={12} >
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel id="demo-controlled-open-select-label">Role</InputLabel>
+                                    <Select
+                                        labelId="demo-controlled-open-select-label"
+                                        id="demo-controlled-open-select"
+                                        open={open}
+                                        onClose={handleClose}
+                                        onOpen={handleOpen}
+                                        value={age}
+                                        onChange={handleChange}
+                                    >
+                                        <MenuItem value="">
+
+                                        </MenuItem>
+                                        <MenuItem value={"Donor"}>Donor</MenuItem>
+                                        <MenuItem value={"Volunteer"}>Volunteer</MenuItem>
+                                        <MenuItem value={"NGO"}>NGO</MenuItem>
+                                        <MenuItem value={"Admin"}>Admin</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <Button
+                                    /* type="submit"*/
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                    onClick={Submit}
                                 >
-                                    <MenuItem value="">
-
-                                    </MenuItem>
-                                    <MenuItem value={"Donor"}>Donor</MenuItem>
-                                    <MenuItem value={"Volunteer"}>Volunteer</MenuItem>
-                                    <MenuItem value={"NGO"}>NGO</MenuItem>
-                                    <MenuItem value={"Admin"}>Admin</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Button
-                                /* type="submit"*/
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                                onClick={Submit}
-                            >
-                                Sign In
+                                    Sign In
             </Button></Grid>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
+                            <Grid container>
+                                <Grid item xs>
+                                    <Link href="#" variant="body2">
+                                        Forgot password?
                 </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2" to="/SignUp" component={l}>
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
+                                </Grid>
+                                <Grid item>
+                                    <Link href="#" variant="body2" to="/SignUp" component={l}>
+                                        {"Don't have an account? Sign Up"}
+                                    </Link>
+                                </Grid>
+
                             </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Box mt={8}>
-                <Copyright />
-            </Box>
-        </Container>
+                    </form>
+                </div>
+                <Box mt={8}>
+                    <Copyright />
+                </Box>
+
+            </Container>
+
+        </div>
     );
 }

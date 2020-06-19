@@ -18,6 +18,8 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Deleteevent from './deleteevent';
 
 
 function Alert(props) {
@@ -66,7 +68,7 @@ export default function Orders(props) {
     setOpen(true);
   };
   const Submit = (event) => {
-    setOp()
+
     if (eventName && eventDescription && !age) {
       sev("error");
       m("select a volunteer");
@@ -103,17 +105,20 @@ export default function Orders(props) {
       setOp(true);
     }
     else {
-      sets(s + 1);
-      sev("success");
-      m("event added successfully");
-      setOp(true);
+
+
       event.preventDefault();
       const payload = {
         Email: props.email,
         Name: props.name,
         eventName: eventName,
         eventDescription: eventDescription,
-        volunteermail: age
+        volunteermail: age,
+        adddate: new Date(),
+        addday: (new Date()).getDate(),
+        addmonth: (new Date()).getMonth(),
+        remday: 32,
+        flag: 0
       };
       axios({
         url: '/addevent',
@@ -123,23 +128,30 @@ export default function Orders(props) {
         console.log(re.data);
         setName(``);
         setDescription(``);
+        setAge(``);
 
       });
+      sets(s + 1);
+      sev("success");
+      m("event added successfully");
+      setOp(true);
+
     }
   }
 
 
   useEffect(() => {
-    const payload = {
+
+    const payload2 = {
 
       Email: Email,
-      Name: Name
+      Name: Name, flag: 0
 
     };
     axios({
       url: '/getevents',
       method: 'POST',
-      data: payload
+      data: payload2
     }).then((response) => {
       console.log(response.data);
       setRows(response.data);
@@ -154,6 +166,13 @@ export default function Orders(props) {
     })
 
   }, [s]);
+
+
+  const callback = ((a) => {
+    if (a === 1) {
+      sets(s + 1);
+    }
+  });
 
   return (<div>
     <div>
@@ -226,6 +245,8 @@ export default function Orders(props) {
             <TableCell>eventName</TableCell>
             <TableCell>eventDescription</TableCell>
             <TableCell>volunteermail</TableCell>
+            <TableCell>delete the event</TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -234,6 +255,7 @@ export default function Orders(props) {
               <TableCell>{ro.eventName}</TableCell>
               <TableCell>{ro.eventDescription}</TableCell>
               <TableCell>{ro.volunteermail}</TableCell>
+              <TableCell><Deleteevent value={ro} mail={Email} callbackfromparent={callback} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

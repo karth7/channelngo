@@ -18,7 +18,8 @@ router.post('/ngodonations', (req, res) => {
         sbdonor: 1,
         cbvolunteer: 1,
         sbvolunteer: 1,
-        cbngo: 1
+        cbngo: 1,
+        donationtime: 1
 
 
     }).then((data) => {

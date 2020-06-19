@@ -209,7 +209,7 @@ export default function SignUp() {
                                     <MenuItem value={"Donor"}>Donor</MenuItem>
                                     <MenuItem value={"Volunteer"}>Volunteer</MenuItem>
                                     <MenuItem value={"NGO"}>NGO</MenuItem>
-                                    <MenuItem value={"Admin"}>Admin</MenuItem>
+
                                 </Select>
                             </FormControl>
                         </Grid>

@@ -410,6 +410,9 @@ export default function NgoLanding(props) {
                                     </TableContainer>
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
+                                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                                        minimize the nav bar to see the analysis
+          </Typography>
                                     <div>
                                         <main className={classes.content}>
                                             <div className={classes.appBarSpacer} />

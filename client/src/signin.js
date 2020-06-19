@@ -141,7 +141,7 @@ export default function SignIn() {
             method: 'POST',
             data: payload
         }).then((re) => {
-            console.log(re.data[0].firstname);
+            //console.log(re.data[0].firstname);
 
             if (re.data.length === 1) {
                 switch (age) {
@@ -269,11 +269,7 @@ export default function SignIn() {
                                     Sign In
             </Button></Grid>
                             <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                </Link>
-                                </Grid>
+
                                 <Grid item>
                                     <Link href="#" variant="body2" to="/SignUp" component={l}>
                                         {"Don't have an account? Sign Up"}
